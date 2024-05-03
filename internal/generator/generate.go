@@ -99,8 +99,8 @@ func (generator *Generator) generateDockerfile(machine entities.Machine) {
 }
 
 const (
-	ConfigServerTemplateFile = "config-server.tmpl.json"
-	ConfigClientTemplateFile = "config-client.tmpl.json"
+	ConfigServerTemplateFile = "config-server.json.tmpl"
+	ConfigClientTemplateFile = "config-client.json.tmpl"
 	ConfigOutputFile         = "config.json"
 )
 
@@ -157,7 +157,7 @@ func (generator *Generator) generateConfig(machine entities.Machine) {
 }
 
 const (
-	DockerComposeTemplateFile = "docker-compose.tmpl.yml"
+	DockerComposeTemplateFile = "docker-compose.yml.tmpl"
 	DockerComposeOutputFile   = "docker-compose.yml"
 )
 
