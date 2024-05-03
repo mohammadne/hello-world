@@ -14,4 +14,4 @@ FROM alpine:latest AS runtime
 LABEL maintainer="Mohammad Nasr <mohammadne.dev@gmail.com>"
 WORKDIR /app
 COPY --from=builder /entrypoint .
-ENTRYPOINT ["./entrypoint"]
+CMD tail -f /dev/null # Command to keep the container running

@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"errors"
 	"log"
 
 	"github.com/manifoldco/promptui"
@@ -75,12 +76,9 @@ func (executer *Executer) selectProtocol() {
 
 func (executer *Executer) promptServerDomainOrIP() {
 	validate := func(input string) error {
-		if err := validator.ValidateIP(input); err != nil {
-			return err
-		} else if err := validator.ValidateDomain(input); err != nil {
-			return err
+		if validator.ValidateIP(input) != nil && validator.ValidateDomain(input) != nil {
+			return errors.New("Invalid Domain or IP has been given")
 		}
-
 		return nil
 	}
 
