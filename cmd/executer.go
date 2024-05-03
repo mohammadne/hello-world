@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	defaultXrayVersion     = "v1.18.11"
+	defaultXrayVersion     = "v1.8.11"
 	defaultOutputDirectory = "outputs"
 	defaultServerPort      = 443
 	defaultClientPort      = 10809
