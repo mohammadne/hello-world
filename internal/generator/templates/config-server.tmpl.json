@@ -1,0 +1,50 @@
+{
+    "log": {
+        "loglevel": "debug"
+    },
+    "inbounds": [
+        {
+            "listen": "0.0.0.0",
+            "port": "{{ .Port }}",
+            "protocol": "vless",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "{{ .UUID }}",
+                        "flow": "xtls-rprx-vision"
+                    }
+                ],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "reality",
+                "realitySettings": {
+                    "dest": "1.1.1.1:443",
+                    "serverNames": [
+                        ""
+                    ],
+                    "privateKey": "{{ .PrivateKey }}",
+                    "shortIds": [
+                        ""
+                    ]
+                }
+            },
+            "sniffing": {
+                "enabled": true,
+                "destOverride": [
+                    "http",
+                    "tls",
+                    "quic"
+                ],
+                "routeOnly": true
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "tag": "direct"
+        }
+    ]
+}

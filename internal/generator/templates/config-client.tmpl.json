@@ -1,0 +1,97 @@
+{
+    "log": {
+        "loglevel": "debug"
+    },
+    "inbounds": [
+        {
+            "listen": "127.0.0.1",
+            "port": "{{ .ClientPort }}",
+            "protocol": "http",
+            "settings": {
+                "userLevel": 8
+            },
+            "tag": "http"
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "vless",
+            "settings": {
+                "vnext": [
+                    {
+                        "address": "{{ .ServerAddress }}",
+                        "port": "{{ .ServerPort }}",
+                        "users": [
+                            {
+                                "encryption": "none",
+                                "flow": "xtls-rprx-vision",
+                                "id": "{{ .UUID }}"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "reality",
+                "realitySettings": {
+                    "fingerprint": "randomized",
+                    "serverName": "",
+                    "publicKey": "{{ .PublicKey }}",
+                    "spiderX": "",
+                    "shortId": ""
+                }
+            },
+            "tag": "proxy"
+        }
+    ],
+    "routing": {
+        "domainStrategy": "IPIfNonMatch",
+        "rules": [
+            {
+                "ip": [
+                    "1.1.1.1"
+                ],
+                "outboundTag": "proxy",
+                "port": "53",
+                "type": "field"
+            }
+        ]
+    },
+    "dns": {
+        "hosts": {
+            "domain:googleapis.cn": "googleapis.com",
+            "domain:v2fly.org": "www.vicemc.net",
+            "domain:github.io": "pages.github.com",
+            "domain:wikipedia.org": "www.wikimedia.org",
+            "domain:shadowsocks.org": "electronicsrealm.com"
+        },
+        "servers": [
+            "1.1.1.1",
+            {
+                "address": "114.114.114.114",
+                "port": 53,
+                "domains": [
+                    "geosite:cn"
+                ]
+            },
+            "8.8.8.8",
+            "localhost"
+        ]
+    },
+    "policy": {
+        "levels": {
+            "0": {
+                "uplinkOnly": 0,
+                "downlinkOnly": 0
+            }
+        },
+        "system": {
+            "statsInboundUplink": false,
+            "statsInboundDownlink": false,
+            "statsOutboundUplink": false,
+            "statsOutboundDownlink": false
+        }
+    },
+    "other": {}
+}
