@@ -4,5 +4,5 @@ services:
   xray:
     build: .
     ports:
-      - "{{ .Port }}:{{ .Port }}"
+      - "{{ .Port }}":"{{ .Port }}"
     restart: always

@@ -168,9 +168,18 @@ func (generator *Generator) generateDockerCompose(machine entities.Machine) {
 		panic(err)
 	}
 
-	values := struct{ Port int }{Port: generator.ClientPort}
+	// var values any
+
+	// values := struct{ Port int }{Port: generator.ClientPort}
+	// if machine == entities.Server {
+	// 	values.Port = generator.ServerPort
+	// }
+
+	var values struct{ Port int }
 	if machine == entities.Server {
-		values.Port = generator.ServerPort
+		values = struct{ Port int }{Port: generator.ServerPort}
+	} else {
+		values = struct{ Port int }{Port: generator.ClientPort}
 	}
 
 	var outputFile *os.File

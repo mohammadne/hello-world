@@ -51,7 +51,7 @@ func (executer Executer) Command() *cobra.Command {
 	cmd.Flags().StringVar(&executer.version, "xray-version", defaultXrayVersion, "The xray-core version")
 	cmd.Flags().StringVar(&executer.outputDirectory, "output-directory", defaultOutputDirectory, "The output directory for generated files")
 	cmd.Flags().IntVar(&executer.serverPort, "server-port", defaultServerPort, "The port server exposed from")
-	cmd.Flags().IntVar(&executer.serverPort, "client-port", defaultClientPort, "The port client exposed from")
+	cmd.Flags().IntVar(&executer.clientPort, "client-port", defaultClientPort, "The port client exposed from")
 
 	return cmd
 }
